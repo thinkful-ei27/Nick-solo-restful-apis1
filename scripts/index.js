@@ -18,8 +18,3 @@ $(document).ready(function() {
   shoppingList.render();
 });
 
-api.getItems(function(data) {
-  console.log(data);
-});
-
-console.log(api.BASE_URL);
