@@ -1,5 +1,5 @@
 'use strict'
-/* global shoppingList, cuid */
+/* global shoppingList, global api, cuid */
 
 // eslint-disable-next-line no-unused-vars
 const store = {
@@ -18,5 +18,8 @@ $(document).ready(function() {
   shoppingList.render();
 });
 
-$.getJSON('https://thinkful-list-api-herokuapp.com/nicknotj/items', (response) => {console.log('api response:', response);
+api.getItems(function(data) {
+  console.log(data);
 });
+
+console.log(api.BASE_URL);
