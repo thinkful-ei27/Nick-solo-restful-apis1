@@ -19,10 +19,21 @@ const api =(function(){
     });
   }
 
+  function updateItem(itemId, updateData, callback){
+    $.ajax({
+      url: `${BASE_URL}/items/${itemId}`,
+      method: 'PATCH',
+      contentType: 'application/json',
+      data: JSON.stringify(updateData),
+      success: callback
+    });
+  }
+
   return {
     BASE_URL,
     getItems,
-    createItem
+    createItem,
+    updateItem
   };
 }());
 

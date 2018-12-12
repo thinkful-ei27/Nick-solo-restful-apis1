@@ -1,5 +1,5 @@
 /* global store, cuid */
-
+'use strict';
 // eslint-disable-next-line no-unused-vars
 const shoppingList = (function(){
 
@@ -55,16 +55,20 @@ const shoppingList = (function(){
   }
   
   
-  function addItemToShoppingList(itemName) {
-    store.items.push({ id: cuid(), name: itemName, checked: false });
+  function addItem(item) {
+    store.items.push(item);
   }
   
   function handleNewItemSubmit() {
     $('#js-shopping-list-form').submit(function (event) {
       event.preventDefault();
       const newItemName = $('.js-shopping-list-entry').val();
+      api.createItem(newItemName, (newItem) =>{
+        shoppingList.addItem(newItem);
+        render();
+      });
       $('.js-shopping-list-entry').val('');
-      addItemToShoppingList(newItemName);
+      
       render();
     });
   }
@@ -158,5 +162,6 @@ const shoppingList = (function(){
   return {
     render: render,
     bindEventListeners: bindEventListeners,
+    addItem
   };
 }());
